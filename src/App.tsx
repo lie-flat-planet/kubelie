@@ -1,15 +1,23 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Index from './page/Index';
+import Package from './page/PackageManage/Package/Package';
+import Config from './page/PackageManage/Config/Config';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Index message="你好" />,
-    children: [],
-  },
-  {
-    path: 'package-manage/package',
-    element: <Index message="pacgae" />,
+    element: <Index />,
+    children: [
+      {
+        index: true,
+        // path: 'package-manage/package',
+        element: <Package />,
+      },
+      {
+        path: 'package-manage/config',
+        element: <Config />,
+      },
+    ],
   },
 ]);
 

@@ -1,7 +1,20 @@
-import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Index from './page/Index';
 
-function App() {
-  return <div>liming gogogo!!!</div>;
-}
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Index message="你好" />,
+    children: [],
+  },
+  {
+    path: 'package-manage/package',
+    element: <Index message="pacgae" />,
+  },
+]);
+
+const App = () => {
+  return <RouterProvider router={router} />;
+};
 
 export default App;

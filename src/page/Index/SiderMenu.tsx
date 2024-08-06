@@ -6,7 +6,7 @@ import {
   SettingOutlined,
   GroupOutlined,
 } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import type { MenuProps } from 'antd';
 
@@ -28,21 +28,49 @@ function getItem(
   } as MenuItem;
 }
 
+type OpenKeyAndSelectedKey = {
+  openKey: string;
+  selectedKey: string;
+};
+
 const items: MenuItem[] = [
   getItem('业务管理', 'business', <ApartmentOutlined />),
-  getItem('部署包管理', 'package-manager', <DeploymentUnitOutlined />, [
-    getItem(<Link to="/">部署包</Link>, 'package-package'),
-    getItem(
-      <Link to="/package-manage/config">部署配置单</Link>,
-      'package-config'
-    ),
+  getItem('部署包管理', 'package-manage', <DeploymentUnitOutlined />, [
+    getItem(<Link to="/">部署包</Link>, 'package'),
+    getItem(<Link to="/package-manage/config">部署配置单</Link>, 'config'),
   ]),
   getItem('后台管理', 'admin', <SettingOutlined />),
   getItem('资源组管理', 'resource', <GroupOutlined />),
 ];
 
 const SiderMenu = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState<boolean>(false);
+
+  const getOpenKeyAndSelectedKey = (path: string): OpenKeyAndSelectedKey => {
+    let ret: OpenKeyAndSelectedKey = {
+      openKey: '',
+      selectedKey: '',
+    };
+
+    if (path.startsWith('/')) {
+      path = path.substring(1);
+      if (path !== '') {
+        const split: string[] = path.split('/');
+
+        ret.openKey = split[0];
+        ret.selectedKey = split[1];
+      }
+    }
+
+    return ret;
+  };
+
+  const keys: OpenKeyAndSelectedKey = getOpenKeyAndSelectedKey(
+    useLocation().pathname
+  );
+  const openKey: string = keys.openKey !== '' ? keys.openKey : 'package-manage';
+  const selectedKey: string =
+    keys.selectedKey !== '' ? keys.selectedKey : 'package';
 
   return (
     <Layout.Sider
@@ -65,8 +93,8 @@ const SiderMenu = () => {
       <div className="demo-logo-vertical" />
       <Menu
         theme="dark"
-        defaultOpenKeys={['package-manager']}
-        defaultSelectedKeys={['package-package']}
+        defaultOpenKeys={[openKey]}
+        defaultSelectedKeys={[selectedKey]}
         mode="inline"
         items={items}
       />

@@ -1,28 +1,18 @@
-import React from 'react';
-
-import { Layout, theme } from 'antd';
+import { Layout } from 'antd';
 import Cnt from './Cnt';
 import SiderMenu from './SiderMenu';
-
-const { Header, Footer } = Layout;
+import TopHeader from './TopHeader';
+import BottomFooter from './BottomFooter';
 
 const Index = () => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <SiderMenu />
 
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }} />
-
+        <TopHeader />
         <Cnt />
-
-        <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
+        <BottomFooter />
       </Layout>
     </Layout>
   );

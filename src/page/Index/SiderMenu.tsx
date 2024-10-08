@@ -39,7 +39,9 @@ const items: MenuItem[] = [
     getItem(<Link to="/">部署包</Link>, 'package'),
     getItem(<Link to="/package-manage/config">部署配置单</Link>, 'config'),
   ]),
-  getItem('后台管理', 'admin', <SettingOutlined />),
+  getItem('后台管理', 'admin', <SettingOutlined />, [
+    getItem(<Link to="/admin/cluster">集群管理</Link>, 'clusters'),
+  ]),
   getItem('资源组管理', 'resource', <GroupOutlined />),
 ];
 

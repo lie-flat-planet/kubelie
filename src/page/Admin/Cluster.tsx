@@ -1,9 +1,10 @@
 import { theme } from 'antd';
 
-const Package = () => {
+const Cluster = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
   return (
     <div
       style={{
@@ -13,9 +14,9 @@ const Package = () => {
         borderRadius: borderRadiusLG,
       }}
     >
-      部署包管理
+      集群管理
     </div>
   );
 };
 
-export default Package;
+export default Cluster;

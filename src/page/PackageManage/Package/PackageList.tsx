@@ -72,7 +72,7 @@ const mockData: Package[] = [
 ];
 
 const PackageList = () => {
-  const pageSize = 2;
+  const pageSize: number = 2;
 
   const [packages, setPackages] = useState<Package[]>([]);
   const [current, setCurrent] = useState<number>(1);
@@ -84,7 +84,7 @@ const PackageList = () => {
 
   useEffect(() => {
     // Simulating API call
-    const fetchPackages = () => {
+    const fetchPackages = (): void => {
       setPackages(mockData);
       setTotal(mockData.length);
     };
@@ -92,13 +92,13 @@ const PackageList = () => {
     fetchPackages();
   }, []);
 
-  const getPaginatedData = () => {
+  const getPaginatedData = (): Package[] => {
     const startIndex = (current - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     return packages.slice(startIndex, endIndex);
   };
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (page: number): void => {
     setCurrent(page);
   };
 

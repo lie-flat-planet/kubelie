@@ -6,7 +6,7 @@ import BottomFooter from './BottomFooter';
 
 const Index = () => {
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout style={{ minHeight: '100vh', borderRadius: '10px 0px 0px' }}>
       <SiderMenu />
 
       <Layout>

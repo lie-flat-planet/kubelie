@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Pagination, theme, Button, Space } from 'antd';
+import { Table, Pagination, theme, Space } from 'antd';
 import { Link } from 'react-router-dom';
 import type { ColumnsType } from 'antd/es/table';
 
@@ -29,9 +29,9 @@ const columns: ColumnsType<Package> = [
   {
     title: 'Action',
     key: 'action',
-    render: (_, record) => (
+    render: (_, record: Package) => (
       <Space size="middle">
-        <Link to={`/package/${record.id}`}>View Details</Link>
+        <Link to={`/package-manage/package/${record.id}`}>View Details</Link>
       </Space>
     ),
   },

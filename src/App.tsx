@@ -4,6 +4,7 @@ import PackageList from './page/PackageManage/Package/PackageList';
 // import PackageL from './page/PackageManage/Package/PackageL';
 import Config from './page/PackageManage/Config/Config';
 import Cluster from './page/Admin/Cluster';
+import Package from './page/PackageManage/Package/Package';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: 'admin/cluster',
         element: <Cluster />,
+      },
+      {
+        path: '/package-manage/package/:id',
+        element: <Package />,
       },
     ],
   },

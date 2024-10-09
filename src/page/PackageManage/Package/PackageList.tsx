@@ -69,10 +69,52 @@ const mockData: Package[] = [
     version: '1.5.0',
     description: 'This is package E',
   },
+  {
+    id: '6',
+    name: 'Package F',
+    version: '1.5.1',
+    description: 'This is package F',
+  },
+  {
+    id: '7',
+    name: 'Package G',
+    version: '1.5.0',
+    description: 'This is package G',
+  },
+  {
+    id: '8',
+    name: 'Package H',
+    version: '1.5.0',
+    description: 'This is package H',
+  },
+  {
+    id: '9',
+    name: 'Package 9',
+    version: '1.5.0',
+    description: 'This is package 9',
+  },
+  {
+    id: '10',
+    name: 'Package 10',
+    version: '1.5.0',
+    description: 'This is package 10',
+  },
+  {
+    id: '11',
+    name: 'Package 11',
+    version: '1.5.0',
+    description: 'This is package 11',
+  },
+  {
+    id: '12',
+    name: 'Package 12',
+    version: '1.5.0',
+    description: 'This is package 12',
+  },
 ];
 
 const PackageList = () => {
-  const pageSize: number = 2;
+  const pageSize: number = 10;
 
   const [packages, setPackages] = useState<Package[]>([]);
   const [current, setCurrent] = useState<number>(1);
@@ -105,13 +147,13 @@ const PackageList = () => {
   return (
     <div
       style={{
-        padding: 24,
-        minHeight: 360,
+        paddingLeft: 10,
+        // minHeight: 360,
         background: colorBgContainer,
         borderRadius: borderRadiusLG,
       }}
     >
-      <h1>Package List</h1>
+      <h2>部署包</h2>
       <Table
         columns={columns}
         dataSource={getPaginatedData()}

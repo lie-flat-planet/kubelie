@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Index from './page/Index';
 import PackageList from './page/PackageManage/Package/PackageList';
-// import PackageL from './page/PackageManage/Package/PackageL';
+import ListPackage from './page/PackageManage/Package/ListPackage';
 import Config from './page/PackageManage/Config/Config';
 import Cluster from './page/Admin/Cluster';
 import Package from './page/PackageManage/Package/Package';
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
       {
         index: true,
         // path: 'package-manage/package',
-        element: <PackageList />,
+        element: <ListPackage />,
       },
       {
         path: 'package-manage/config',

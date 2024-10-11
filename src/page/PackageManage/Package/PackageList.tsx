@@ -1,7 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Pagination, theme, Space } from 'antd';
+import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
+import {
+  Avatar,
+  List,
+  Space,
+  Descriptions,
+  DescriptionsProps,
+  Pagination,
+  Table,
+  TableProps,
+} from 'antd';
 import { Link } from 'react-router-dom';
-import type { ColumnsType } from 'antd/es/table';
+
+const data = Array.from({ length: 23 }).map((_, i) => ({
+  id: i,
+  href: 'https://ant.design',
+  title: `部署包 ${i}`,
+  description:
+    'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+  content:
+    'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+}));
+
+const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
+  <Space>
+    {React.createElement(icon)}
+    {text}
+  </Space>
+);
 
 interface Package {
   id: string;
@@ -10,34 +36,6 @@ interface Package {
   description: string;
 }
 
-const columns: ColumnsType<Package> = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'Version',
-    dataIndex: 'version',
-    key: 'version',
-  },
-  {
-    title: 'Description',
-    dataIndex: 'description',
-    key: 'description',
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (_, record: Package) => (
-      <Space size="middle">
-        <Link to={`/package-manage/package/${record.id}`}>View Details</Link>
-      </Space>
-    ),
-  },
-];
-
-// Mock data
 const mockData: Package[] = [
   {
     id: '1',
@@ -114,60 +112,73 @@ const mockData: Package[] = [
 ];
 
 const PackageList = () => {
-  const pageSize: number = 10;
-
-  const [packages, setPackages] = useState<Package[]>([]);
+  const [pageSize, total] = [10, 12];
   const [current, setCurrent] = useState<number>(1);
-  const [total, setTotal] = useState<number>(0);
-
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-
-  useEffect(() => {
-    // Simulating API call
-    const fetchPackages = (): void => {
-      setPackages(mockData);
-      setTotal(mockData.length);
-    };
-
-    fetchPackages();
-  }, []);
-
-  const getPaginatedData = (): Package[] => {
-    const startIndex = (current - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    return packages.slice(startIndex, endIndex);
-  };
 
   const handlePageChange = (page: number): void => {
     setCurrent(page);
   };
 
+  // TODO 分页
+  const getPaginatedData = (): Package[] => {
+    return mockData;
+  };
+
   return (
-    <div
-      style={{
-        paddingLeft: 10,
-        // minHeight: 360,
-        background: colorBgContainer,
-        borderRadius: borderRadiusLG,
-      }}
-    >
-      <h2>部署包</h2>
-      <Table
-        columns={columns}
-        dataSource={getPaginatedData()}
-        pagination={false}
-      />
-      <Pagination
-        current={current}
-        pageSize={pageSize}
-        total={total}
-        onChange={handlePageChange}
-        style={{ marginTop: 16, textAlign: 'right' }}
-      />
+    <div>
+      <div>
+        {getPaginatedData().map((pkgItem: Package) => (
+          <PackageItem key={pkgItem.id} pkg={pkgItem} />
+        ))}
+      </div>
+
+      <div className="flex justify-end mt-4">
+        <Pagination
+          current={current}
+          pageSize={pageSize}
+          total={total}
+          onChange={handlePageChange}
+        />
+      </div>
     </div>
   );
 };
 
 export default PackageList;
+
+const PackageItem = ({ pkg }: { pkg: Package }) => {
+  const labelToValue: { [key: string]: string } = {
+    唯一编号: pkg.id,
+    名字: pkg.name,
+    版本: pkg.version,
+    描述: pkg.description,
+    运维负责人: pkg.description,
+  };
+
+  const items: DescriptionsProps['items'] = Object.entries(labelToValue).map(
+    ([label, value]) => ({
+      key: label,
+      label: <span className="text-sm">{label}</span>,
+      children: <span className="text-xs mt-1">{value}</span>,
+    })
+  );
+
+  return (
+    <div className="bg-slate-200 rounded-xl mx-2 my-2 px-2.5 py-px">
+      <div className="my-2">
+        <Link to={`/package-manage/package/${pkg.id}`}>
+          <span className="text-base font-mono text-blue-500">
+            部署包{pkg.id}
+          </span>
+        </Link>
+      </div>
+
+      <Descriptions
+        size="small"
+        column={{ xs: 1, sm: 2, md: 3, lg: 3, xl: 4, xxl: 4 }}
+        items={items}
+        className="bg-white rounded-xl px-2.5 py-2.5 mb-2.5"
+      />
+    </div>
+  );
+};

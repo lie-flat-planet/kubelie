@@ -12,29 +12,29 @@ const Package = () => {
 
   return (
     <div>
-      <div style={{ margin: 12, marginLeft: 12 }}>
+      <div className="m-3 ml-3">
+        {/* 面包屑 */}
         <Breadcrumb
           items={[
             {
               title: (
-                <Link to="/" style={{ fontSize: '12px' }}>
+                <Link to="/" className="text-xs">
                   部署包
                 </Link>
               ),
             },
             {
-              title: (
-                <span style={{ fontSize: '12px', color: 'blue' }}>
-                  部署包详情
-                </span>
-              ),
+              title: <span className="text-xs text-blue-500">部署包详情</span>,
             },
           ]}
         />
       </div>
 
+      {/* 部署包详情 */}
       {numericId !== undefined && <PackageInfo id={numericId} />}
       <br />
+
+      {/* 服务列表 */}
       <ServiceList />
     </div>
   );
@@ -68,18 +68,10 @@ const PackageInfo = ({ id }: { id: number }) => {
   ];
 
   return (
-    <div
-      style={{
-        padding: 24,
-        minHeight: 100,
-        border: '1px solid',
-        background: 'white',
-      }}
-    >
+    <div className="p-6 min-h-[100px] border border-solid bg-white mx-2">
       <Descriptions
-        title="部署包详情"
+        title={`部署包详情${id}`}
         size="small"
-        // bordered
         column={{ xs: 1, sm: 2, md: 3, lg: 3, xl: 4, xxl: 4 }}
         items={items}
       />

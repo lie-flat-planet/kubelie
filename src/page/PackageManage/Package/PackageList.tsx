@@ -167,9 +167,7 @@ const PackageItem = ({ pkg }: { pkg: Package }) => {
     <div className="bg-slate-200 rounded-xl mx-2 my-2 px-2.5 py-px">
       <div className="my-2">
         <Link to={`/package-manage/package/${pkg.id}`}>
-          <span className="text-base font-mono text-blue-500">
-            部署包{pkg.id}
-          </span>
+          <span className="text-base text-blue-500">部署包{pkg.id}</span>
         </Link>
       </div>
 

@@ -80,17 +80,8 @@ const SiderMenu = () => {
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
     >
-      <div
-        style={{
-          backgroundColor: 'white',
-          lineHeight: '32px',
-          textAlign: 'center',
-          fontSize: '18px',
-          height: '50px',
-          marginBottom: '30px',
-        }}
-      >
-        云原生业务管理平台
+      <div className="bg-white h-[64px] flex justify-center items-center">
+        <span className="text-lg">云原生业务管理平台</span>
       </div>
       <div className="demo-logo-vertical" />
       <Menu
@@ -99,6 +90,7 @@ const SiderMenu = () => {
         defaultSelectedKeys={[selectedKey]}
         mode="inline"
         items={items}
+        className="mt-4"
       />
     </Layout.Sider>
   );

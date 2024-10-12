@@ -132,7 +132,7 @@ const PackageList = () => {
         ))}
       </div>
 
-      <div className="flex justify-end mt-4">
+      <div className="flex justify-end mt-4 mb-4">
         <Pagination
           current={current}
           pageSize={pageSize}

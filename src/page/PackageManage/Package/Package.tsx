@@ -12,24 +12,6 @@ const Package = () => {
 
   return (
     <div>
-      <div className="m-3 ml-3">
-        {/* 面包屑 */}
-        <Breadcrumb
-          items={[
-            {
-              title: (
-                <Link to="/" className="text-xs">
-                  部署包
-                </Link>
-              ),
-            },
-            {
-              title: <span className="text-xs text-blue-500">部署包详情</span>,
-            },
-          ]}
-        />
-      </div>
-
       {/* 部署包详情 */}
       {numericId !== undefined && <PackageInfo id={numericId} />}
       <br />

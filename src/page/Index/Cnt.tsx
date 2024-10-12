@@ -7,13 +7,7 @@ const { Content } = Layout;
 // content
 const Cnt = () => {
   return (
-    <Content
-      style={{
-        margin: '10px 16px',
-        background: 'white',
-        borderRadius: '10px 10px',
-      }}
-    >
+    <Content className="m-[5px_16px] bg-white rounded-[10px]">
       <Outlet />
     </Content>
   );

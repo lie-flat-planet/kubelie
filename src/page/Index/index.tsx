@@ -3,6 +3,9 @@ import Cnt from './Cnt';
 import SiderMenu from './SiderMenu';
 import TopHeader from './TopHeader';
 import BottomFooter from './BottomFooter';
+import { Breadcrumb } from 'antd';
+import { Link } from 'react-router-dom';
+import DynamicBreadcrumb from './DynamicBreadcrumb';
 
 const Index = () => {
   return (
@@ -11,6 +14,10 @@ const Index = () => {
 
       <Layout>
         <TopHeader />
+        <div className="mt-1 ml-3">
+          {/* 面包屑 */}
+          <DynamicBreadcrumb />
+        </div>
         <Cnt />
         <BottomFooter />
       </Layout>

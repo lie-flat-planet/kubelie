@@ -6,9 +6,15 @@ import type { DescriptionsProps } from 'antd';
 import { Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
 
+export const PackageIdQueryKey = 'packageId';
+
 const Package = () => {
-  const { id } = useParams<{ id: string }>();
-  const numericId = id ? parseInt(id, 10) : undefined;
+  // const { id } = useParams<{ id: string }>();
+  // const numericId = id ? parseInt(id, 10) : undefined;
+
+  const searchParams = new URLSearchParams(window.location.search);
+  const packageId = searchParams.get(PackageIdQueryKey);
+  const numericId = packageId ? parseInt(packageId, 10) : undefined;
 
   return (
     <div>

@@ -36,7 +36,7 @@ type OpenKeyAndSelectedKey = {
 const items: MenuItem[] = [
   getItem('业务管理', 'business', <ApartmentOutlined />),
   getItem('部署包管理', 'package-manage', <DeploymentUnitOutlined />, [
-    getItem(<Link to="/package-manage/package">部署包</Link>, 'package'),
+    getItem(<Link to="/package-manage/list">部署包</Link>, 'package'),
     getItem(<Link to="/package-manage/config">部署配置单</Link>, 'config'),
   ]),
   getItem('后台管理', 'admin', <SettingOutlined />, [

@@ -3,8 +3,9 @@ import { useLocation, matchPath, Link } from 'react-router-dom';
 import { ItemType } from 'antd/es/breadcrumb/Breadcrumb';
 
 const breadcrumbNameMap: { [key: string]: string } = {
-  '/package-manage/package': '部署包',
-  '/package-manage/package/:id': '部署包详情',
+  '/package-manage/list': '部署包',
+  '/package-manage/list/detail': '部署包详情',
+  'package-manage/list/detail/service-detail': '服务详情',
   '/package-manage/config': '部署配置单',
   '/admin/cluster': '集群管理',
 };

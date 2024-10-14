@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import {
-  Avatar,
-  List,
-  Space,
-  Descriptions,
-  DescriptionsProps,
-  Pagination,
-  Table,
-  TableProps,
-} from 'antd';
+import { Space, Descriptions, DescriptionsProps, Pagination } from 'antd';
 import { Link } from 'react-router-dom';
+import { PackageIdQueryKey } from './Package';
 
 const data = Array.from({ length: 23 }).map((_, i) => ({
   id: i,
@@ -166,7 +158,7 @@ const PackageItem = ({ pkg }: { pkg: Package }) => {
   return (
     <div className="bg-slate-200 rounded-xl mx-2 my-2 px-2.5 py-px">
       <div className="my-2">
-        <Link to={`/package-manage/package/${pkg.id}`}>
+        <Link to={`/package-manage/list/detail?${PackageIdQueryKey}=${pkg.id}`}>
           <span className="text-base text-blue-500">部署包{pkg.id}</span>
         </Link>
       </div>

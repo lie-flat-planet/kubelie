@@ -5,11 +5,12 @@ import Config from './page/PackageManage/Config/Config';
 import Cluster from './page/Admin/Cluster';
 import Package from './page/PackageManage/Package/Package';
 import { Navigate } from 'react-router-dom';
+import ServiceDetail from './page/PackageManage/Package/Service/ServiceDetail';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Navigate to="/package-manage/package" replace />, // Automatically redirect to /home
+    element: <Navigate to="/package-manage/list" replace />, // Automatically redirect to /home
   },
   {
     path: '/package-manage',
@@ -17,13 +18,18 @@ const router = createBrowserRouter([
     children: [
       // package
       {
-        path: 'package',
+        path: 'list',
         element: <PackageList />,
       },
       {
-        path: '/package-manage/package/:id',
+        path: '/package-manage/list/detail',
         element: <Package />,
       },
+      {
+        path: '/package-manage/list/detail/service-detail',
+        element: <ServiceDetail />,
+      },
+
       // config
       {
         path: 'config',

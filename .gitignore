@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 .vscode
 .idea
+yarn.lock
+yarn_cp.lock
+
